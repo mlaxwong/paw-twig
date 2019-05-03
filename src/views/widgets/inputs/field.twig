@@ -1,0 +1,23 @@
+{%- set label = (label is defined and label != '__blank__' ? label : null) %}
+{%- set errors = (errors is defined ? errors : null) -%}
+{%- set floatLabel = (floatLabel is defined ? floatLabel : false) -%}
+
+{%- set fieldClass = [
+    floatLabel ? 'form-label-group' : null,
+    'form-group',
+]|join(' ') %}
+
+<div class="{{ fieldClass }}">
+    {% if floatLabel == false %}
+    <label
+        {%- if id is defined %} for="{{ id }}"{% endif %}
+        >{{ label }}</label>
+    {% endif %}
+    {{ input|raw }}
+    {% if floatLabel %}
+    <label
+        {%- if id is defined %} for="{{ id }}"{% endif %}
+        >{{ label }}</label>
+    {% endif %}
+    {% include "@pawcp_base/views/_includes/forms/errors.twig" with { errors: errors } %}
+</div>

@@ -1,0 +1,17 @@
+{% set id = id ?? 'upload-input' %}
+
+{% import "@pawcp_base/views/_includes/forms.twig" as forms %}
+
+{%- set inputClass = [
+    'd-none',
+]|join(' ') %}
+
+{%- set labelClass = [
+
+]|join(' ') %}
+
+<div>
+    <paw-upload
+        {%- if csrf is defined %} csrf="{{ csrf }}"{% endif %}
+        ></paw-upload>
+</div>

@@ -1,0 +1,25 @@
+{
+    "name": "mlaxwong/paw-twig",
+    "type": "paw-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mlax Wong",
+            "email": "mlaxwong@gmail.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "paw\\twig\\": "src/"
+        }
+    },
+    "require": {
+        "mlaxwong/paw": "^1.1",
+        "mlaxwong/paw-assets-fontawesome": "^1.0",
+        "mlaxwong/paw-bootstrap4": "^1.0",
+        "mlaxwong/paw-webcomponent": "^1.0"
+    }
+}

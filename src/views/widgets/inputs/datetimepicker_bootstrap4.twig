@@ -1,0 +1,17 @@
+{%- set class = [
+    'form-control',
+    (errors ? 'is-invalid' : null),
+]|join(' ') %}
+<paw-datepicker-bootstrap4
+    class="{{ class }}"
+    {%- if id is defined %} id="{{ id }}"{% endif %}
+    {%- if name is defined %} name="{{ name }}"{% endif %}
+    {%- if label is defined %} placeholder="{{ label }}"{% endif %}
+    {%- if value is defined %} value="{{ value }}"{% endif %}
+    {%- if format is defined %} format="{{ format }}"{% endif %}
+    {%- if options is defined -%}
+    {%- for key, value in options -%}
+    {{ key }}="{{ value }}"
+    {%- endfor -%}
+    {%- endif -%}
+></paw-datepicker-bootstrap4>

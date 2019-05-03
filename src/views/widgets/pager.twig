@@ -1,0 +1,28 @@
+{% set maxButtonCount = 5 %}
+
+{% set currentPage = pagination.page %}
+{% set pageCount = pagination.getPageCount() %}
+{% set beginPage = max(0, currentPage - (maxButtonCount / 2)|round(0, 'floor')) %}
+{% set endPage = beginPage + maxButtonCount - 1 %}
+
+{% if endPage >= pageCount %}
+    {% set endPage = pageCount - 1 %}
+    {% set beginPage = max(0, endPage - maxButtonCount + 1) %}
+{% endif %}
+
+{% if pageCount > 1 %}
+<nav class="navigation">
+    <ul class="pagination pagination-sm justify-content-end">
+        <li class="page-item"><a class="page-link" href="{{ pagination.createUrl(0) }}">First</a></li>
+        {% for i in  beginPage .. endPage %}
+        {% set isActive = (i == currentPage) %}
+        {% set pageItemCss = [
+            'page-item',
+            isActive ? 'active' : null
+        ]|join(' ') %}
+        <li class="{{ pageItemCss }}"><a class="page-link" href="{{ pagination.createUrl(i) }}">{{ i + 1 }}</a></li>
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="{{ pagination.createUrl(pageCount - 1) }}">Last</a></li>
+    </ul>
+</nav>
+{% endif %}

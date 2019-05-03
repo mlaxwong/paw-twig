@@ -1,0 +1,142 @@
+{# Pager #}
+{% macro pager(config) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/pager.twig" with config only %}
+{% endmacro %}
+
+{# Nav #}
+{% macro nav(config) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/nav.twig" with config only %}
+{% endmacro %}
+
+{# Inputs #}
+{% macro input_csrf() %}
+    {% import _self as widgets %}
+    {{ widgets.input_hidden({
+        name: app.request.csrfParam,
+        value: app.request.csrfToken,
+    }) }}
+{% endmacro %}
+
+{% macro input_hidden(config) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/hidden.twig" with config only %}
+{% endmacro %}
+
+{% macro input_text(config) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/text.twig" with config only %}
+{% endmacro %}
+
+{% macro input_textarea(config = {}) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/textarea.twig" with config only %}
+{% endmacro %}
+
+{% macro input_ckeditor(config) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/ckeditor.twig" with config only %}
+{% endmacro %}
+
+{% macro input_upload(config = {}) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/upload.twig" with config only %}
+{% endmacro %}
+
+{% macro input_datetimepicker_bootstrap4(config = {}) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/datetimepicker_bootstrap4.twig" with config only %}
+{% endmacro %}
+
+{% macro input_dropdown_bootstrap4(config = {}) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/dropdown_bootstrap4.twig" with config only %}
+{% endmacro %}
+
+{% macro input_select_vselect(config = {}) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/select_vselect.twig" with config only %}
+{% endmacro %}
+
+{# Fields #}
+{% macro field(config, input) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/field.twig" with config|merge({ input: input }) only %}
+{% endmacro %}
+
+{% macro field_text(config = {}) %}
+    {% import _self as widgets %}
+    {% set input = widgets.input_text(config) %}
+    {{ widgets.field(config, input) }}
+{% endmacro %}
+
+{% macro field_textarea(config = {}) %}
+    {% import _self as widgets %}
+    {% set type = config.type is defined ? config.type : 'ckeditor' %}
+    {% if type == 'textarea' %}
+        {% set input = widgets.input_textarea(config) %}
+    {% elseif type == 'ckeditor' %}
+        {% set config = config|merge({floatLabel: false}) %}
+        {% set input = widgets.input_ckeditor(config) %}
+    {% else %}
+        {% set config = config|merge({floatLabel: false}) %}
+        {% set input = widgets.input_ckeditor(config) %}
+    {% endif %}
+    {{ widgets.field(config, input) }}
+{% endmacro %}
+
+{% macro field_datetimepicker(config = {}) %}
+    {% import _self as widgets %}
+    {% set type = config.type is defined ? config.type : 'boostrap4' %}
+    {% if type == 'materia' %}
+        {% set input = widgets.input_textarea(config) %}
+    {% elseif type == 'boostrap4' %}
+        {% set config = config|merge({floatLabel: false}) %}
+        {% set input = widgets.input_datetimepicker_bootstrap4(config) %}
+    {% else %}
+        {% set config = config|merge({floatLabel: false}) %}
+        {% set input = widgets.input_datetimepicker_bootstrap4(config) %}
+    {% endif %}
+    {{ widgets.field(config, input) }}
+{% endmacro %}
+
+{% macro field_select(config = {}) %}
+    {% import _self as widgets %}
+    {% set input = widgets.input_select_vselect(config) %}
+    {{ widgets.field(config, input) }}
+{% endmacro %}
+
+{# Active Fields #}
+{% macro activefield_text(model, attribute, config = {}) %}
+    {% import _self as forms %}
+    {{ forms.field_text({
+        id: config.id is defined ? config.id : attribute,
+        label: model.getAttributeLabel(attribute),
+        name: html.getInputName(model, attribute),
+        value: attribute(model, attribute),
+        errors: model.getErrors(attribute),
+    }|merge(config)) }}
+{% endmacro %}
+
+{% macro activefield_textarea(model, attribute, config = {}) %}
+    {% import _self as forms %}
+    {{ forms.field_textarea({
+        id: config.id is defined ? config.id : attribute,
+        label: model.getAttributeLabel(attribute),
+        name: html.getInputName(model, attribute),
+        value: attribute(model, attribute),
+        errors: model.getErrors(attribute),
+    }|merge(config)) }}
+{% endmacro %}
+
+{% macro activefield_datetimepicker(model, attribute, config = {}) %}
+    {% import _self as forms %}
+    {{ forms.field_datetimepicker({
+        id: config.id is defined ? config.id : attribute,
+        label: model.getAttributeLabel(attribute),
+        name: html.getInputName(model, attribute),
+        value: attribute(model, attribute),
+        errors: model.getErrors(attribute),
+    }|merge(config)) }}
+{% endmacro %}
+
+{% macro activefield_select(model, attribute, config = {}) %}
+    {% import _self as forms %}
+    {{ forms.field_select({
+        id: config.id is defined ? config.id : attribute,
+        label: model.getAttributeLabel(attribute),
+        name: html.getInputName(model, attribute),
+        value: attribute(model, attribute),
+        errors: model.getErrors(attribute),
+    }|merge(config)) }}
+{% endmacro %}

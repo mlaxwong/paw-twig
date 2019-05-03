@@ -1,0 +1,12 @@
+<paw-select-vselect
+    {%- if id is defined %} id="{{ id }}"{% endif %}
+    {%- if name is defined %} name="{{ name }}"{% endif %}
+    {%- if label is defined %} placeholder="{{ label }}"{% endif %}
+    {%- if value is defined %} value="{{ value }}"{% endif %}
+    {%- if items is defined %} items="{{ items|json_encode() }}"{% endif %}
+    {%- if options is defined -%}
+    {%- for key, value in options -%}
+    {{ key }}="{{ value }}"
+    {%- endfor -%}
+    {%- endif -%}
+></paw-select-vselect>
