@@ -96,6 +96,12 @@
     {{ widgets.field(config, input) }}
 {% endmacro %}
 
+{% macro field_upload(config = {}) %}
+    {% import _self as widgets %}
+    {% set input = widgets.input_upload(config) %}
+    {{ widgets.field(config, input) }}
+{% endmacro %}
+
 {# Active Fields #}
 {% macro activefield_text(model, attribute, config = {}) %}
     {% import _self as forms %}
@@ -133,6 +139,17 @@
 {% macro activefield_select(model, attribute, config = {}) %}
     {% import _self as forms %}
     {{ forms.field_select({
+        id: config.id is defined ? config.id : attribute,
+        label: model.getAttributeLabel(attribute),
+        name: html.getInputName(model, attribute),
+        value: attribute(model, attribute),
+        errors: model.getErrors(attribute),
+    }|merge(config)) }}
+{% endmacro %}
+
+{% macro activefield_upload(model, attribute, config = {}) %}
+    {% import _self as forms %}
+    {{ forms.field_upload({
         id: config.id is defined ? config.id : attribute,
         label: model.getAttributeLabel(attribute),
         name: html.getInputName(model, attribute),

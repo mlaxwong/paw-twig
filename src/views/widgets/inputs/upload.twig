@@ -13,5 +13,8 @@
 <div>
     <paw-upload
         {%- if csrf is defined %} csrf="{{ csrf }}"{% endif %}
+        {%- if name is defined %} name="{{ name }}"{% endif %}
+        {%- if value is defined %} value="{{ value }}"{% endif %}
+        {%- if url is defined %} url="{{ url }}"{% endif %}
         ></paw-upload>
 </div>
