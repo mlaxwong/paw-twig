@@ -37,6 +37,10 @@
     {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/upload.twig" with config only %}
 {% endmacro %}
 
+{% macro input_upload_multiple(config = {}) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/upload_multiple.twig" with config only %}
+{% endmacro %}
+
 {% macro input_datetimepicker_bootstrap4(config = {}) %}
     {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/datetimepicker_bootstrap4.twig" with config only %}
 {% endmacro %}
@@ -98,7 +102,8 @@
 
 {% macro field_upload(config = {}) %}
     {% import _self as widgets %}
-    {% set input = widgets.input_upload(config) %}
+    {% set multiple = config.multiple is defined ? config.multiple : false %}
+    {% set input = multiple ? widgets.input_upload_multiple(config) : widgets.input_upload(config) %}
     {{ widgets.field(config, input) }}
 {% endmacro %}
 
