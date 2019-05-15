@@ -483,16 +483,16 @@
         },
         {
             "name": "mlaxwong/paw-webcomponent",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mlaxwong/paw-webcomponent.git",
-                "reference": "43584b0cdcf90546ab0c82c9d729bfa473e03f2f"
+                "reference": "ef1093eb1cd90487a635679f8ac8a1bf6763e3e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mlaxwong/paw-webcomponent/zipball/43584b0cdcf90546ab0c82c9d729bfa473e03f2f",
-                "reference": "43584b0cdcf90546ab0c82c9d729bfa473e03f2f",
+                "url": "https://api.github.com/repos/mlaxwong/paw-webcomponent/zipball/ef1093eb1cd90487a635679f8ac8a1bf6763e3e0",
+                "reference": "ef1093eb1cd90487a635679f8ac8a1bf6763e3e0",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +516,7 @@
                     "email": "mlaxwong@gmail.com"
                 }
             ],
-            "time": "2019-05-15T10:31:22+00:00"
+            "time": "2019-05-15T12:29:10+00:00"
         },
         {
             "name": "npm-asset/ckeditor--ckeditor5-build-classic",
