@@ -19,5 +19,5 @@
         {%- if id is defined %} for="{{ id }}"{% endif %}
         >{{ label }}</label>
     {% endif %}
-    {% include "@pawcp_base/views/_includes/forms/errors.twig" with { errors: errors } %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/errors.twig" with { errors: errors } %}
 </div>

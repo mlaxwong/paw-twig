@@ -1,31 +1,29 @@
-{% macro nav(navigation, parent = null) %}
-    {% import _self as macros %}
+{% import "@vendor/mlaxwong/paw-twig/src/views/widgets.twig" as macros %}
 
-    {% if parent is null %}
-    <ul class="nav flex-column">
+{% if parent is null %}
+<ul class="nav flex-column">
+{% endif %}
+
+{% for item in navigation %}
+    {% set visible = item.visible is defined ? item.visible : true %}
+    {% if visible %}
+        {% set url = item.url is iterable ? url(item.url) : item.url %}
+        {% set active = app.request.absoluteUrl starts with url or url == '/' and app.request.absoluteUrl is empty %}
+        <li class="nav-item">
+            {% set class = [
+                'nav-link',
+                active ? 'active' : null,
+            ]|join(' ') %}
+            <a href="{{ url|trim('/') }}" class="{{ class }}">{{ item.label }}</a>
+            {% if not item.children|default([]) is empty %}
+                <ul>
+                    {{ macros.nav(item.children|default([]), (parent?:'')~url~'/') }}
+                </ul>
+            {% endif %}
+        </li>
     {% endif %}
+{% endfor %}
 
-    {% for item in navigation %}
-        {% set visible = item.visible is defined ? item.visible : true %}
-        {% if visible %}
-            {% set url = item.url is iterable ? url(item.url) : item.url %}
-            {% set active = app.request.absoluteUrl starts with url or url == '/' and app.request.absoluteUrl is empty %}
-            <li class="nav-item">
-                {% set class = [
-                    'nav-link',
-                    active ? 'active' : null,
-                ]|join(' ') %}
-                <a href="{{ url|trim('/') }}" class="{{ class }}">{{ item.label }}</a>
-                {% if not item.children|default([]) is empty %}
-                    <ul>
-                        {{ macros.nav(item.children|default([]), (parent?:'')~url~'/') }}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endif %}
-    {% endfor %}
-
-    {% if parent is null %}
-    </ul>
-    {% endif %}
-{% endmacro %}
+{% if parent is null %}
+</ul>
+{% endif %}
