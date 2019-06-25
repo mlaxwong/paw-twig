@@ -329,16 +329,16 @@
         },
         {
             "name": "mlaxwong/paw",
-            "version": "1.1.16",
+            "version": "1.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mlaxwong/paw.git",
-                "reference": "87a256db802fb9167ce818a5f367308c4c08b3f2"
+                "reference": "2addc28daa67613579ba7883d835c20fc531ecfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mlaxwong/paw/zipball/87a256db802fb9167ce818a5f367308c4c08b3f2",
-                "reference": "87a256db802fb9167ce818a5f367308c4c08b3f2",
+                "url": "https://api.github.com/repos/mlaxwong/paw/zipball/2addc28daa67613579ba7883d835c20fc531ecfa",
+                "reference": "2addc28daa67613579ba7883d835c20fc531ecfa",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +372,7 @@
                 }
             ],
             "description": "Paw Yii2 Framework",
-            "time": "2019-05-15T10:20:29+00:00"
+            "time": "2019-06-25T14:25:10+00:00"
         },
         {
             "name": "mlaxwong/paw-assets-ckeditor5",
@@ -483,16 +483,16 @@
         },
         {
             "name": "mlaxwong/paw-webcomponent",
-            "version": "1.0.9",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mlaxwong/paw-webcomponent.git",
-                "reference": "ef1093eb1cd90487a635679f8ac8a1bf6763e3e0"
+                "reference": "b73027f45f1998e1fa44b890e863d2af57d00086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mlaxwong/paw-webcomponent/zipball/ef1093eb1cd90487a635679f8ac8a1bf6763e3e0",
-                "reference": "ef1093eb1cd90487a635679f8ac8a1bf6763e3e0",
+                "url": "https://api.github.com/repos/mlaxwong/paw-webcomponent/zipball/b73027f45f1998e1fa44b890e863d2af57d00086",
+                "reference": "b73027f45f1998e1fa44b890e863d2af57d00086",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +516,7 @@
                     "email": "mlaxwong@gmail.com"
                 }
             ],
-            "time": "2019-05-15T12:29:10+00:00"
+            "time": "2019-06-25T14:31:13+00:00"
         },
         {
             "name": "npm-asset/ckeditor--ckeditor5-build-classic",
