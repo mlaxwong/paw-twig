@@ -9,9 +9,11 @@
 
 <div class="{{ fieldClass }}">
     {% if floatLabel == false %}
+    {% if label %}
     <label
-        {%- if id is defined %} for="{{ id }}"{% endif %}
-        >{{ label }}</label>
+    {%- if id is defined %} for="{{ id }}"{% endif %}
+    >{{ label }}</label>
+    {% endif %}
     {% endif %}
     {{ input|raw }}
     {% if floatLabel %}

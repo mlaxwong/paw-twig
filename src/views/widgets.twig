@@ -53,6 +53,10 @@
     {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/select_vselect.twig" with config only %}
 {% endmacro %}
 
+{% macro input_checkbox_switch(config) %}
+    {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/checkbox_switch.twig" with config only %}
+{% endmacro %}
+
 {# Fields #}
 {% macro field(config, input) %}
     {% include "@vendor/mlaxwong/paw-twig/src/views/widgets/inputs/field.twig" with config|merge({ input: input }) only %}
@@ -107,6 +111,12 @@
     {{ widgets.field(config, input) }}
 {% endmacro %}
 
+{% macro field_checkbox(config = {}) %}
+    {% import _self as widgets %}
+    {% set input = widgets.input_checkbox_switch(config) %}
+    {{ widgets.field(config|merge({label: null}), input) }}
+{% endmacro %}
+
 {# Active Fields #}
 {% macro activefield_text(model, attribute, config = {}) %}
     {% import _self as forms %}
@@ -155,6 +165,17 @@
 {% macro activefield_upload(model, attribute, config = {}) %}
     {% import _self as forms %}
     {{ forms.field_upload({
+        id: config.id is defined ? config.id : attribute,
+        label: model.getAttributeLabel(attribute),
+        name: html.getInputName(model, attribute),
+        value: attribute(model, attribute),
+        errors: model.getErrors(attribute),
+    }|merge(config)) }}
+{% endmacro %}
+
+{% macro activefield_checkbox(model, attribute, config = {}) %}
+    {% import _self as forms %}
+    {{ forms.field_checkbox({
         id: config.id is defined ? config.id : attribute,
         label: model.getAttributeLabel(attribute),
         name: html.getInputName(model, attribute),

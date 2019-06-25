@@ -14,7 +14,7 @@
                 'nav-link',
                 active ? 'active' : null,
             ]|join(' ') %}
-            <a href="{{ url|trim('/') }}" class="{{ class }}">{{ item.label }}</a>
+            <a href="{{ url|trim('/') }}" class="{{ class }}">{{ item.label|raw }}</a>
             {% if not item.children|default([]) is empty %}
                 <ul>
                     {{ macros.nav(item.children|default([]), (parent?:'')~url~'/') }}

@@ -1,0 +1,22 @@
+{%- set class = [
+    'custom-control',
+    'custom-switch',
+    (errors ? 'is-invalid' : null),
+]|join(' ') %}
+
+{%- set value = value is defined ? value : false %}
+{%- set id = id is defined ? id : null %}
+{%- set label = (label is defined and label != '__blank__' ? label : null) %}
+
+<div class="{{ class }}">
+    <input 
+        type="checkbox" 
+        class="custom-control-input" 
+        id="{{id}}"
+        value="1"
+        {% if value != null %}checked{% endif %}
+        {%- if id is defined %} id="{{ id }}"{% endif %}
+        {%- if size is defined %} size="{{ size }}"{% endif %}
+        {%- if name is defined %} name="{{ name }}"{% endif %}>
+    <label for="{{id}}" class="custom-control-label">{{ label }}</label>
+</div>
